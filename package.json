@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "serverstart": "nodemon src/lib/server.cjs", 
+    "preview": "svelte-kit preview",
+    "dbinit": "nodemon src/lib/dbinit.cjs"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "next",
+    "svelte": "^3.34.0",
+    "nodemon": "^2.0.12"
+  },
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.7.1",
+    "@fontsource/fira-mono": "^4.2.2",
+    "@lukeed/uuid": "^2.0.0",
+    "cookie": "^0.4.1"
+  }
+}
