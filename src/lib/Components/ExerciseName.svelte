@@ -1,16 +1,29 @@
 <script>
 import {customPlan, exercises, user, userExercise} from '../Store/store'
-import {handlePostExercise} from '../index'
-$:console.log("user", $user);
+
 let newExercise;
 function addExercise() {
   $customPlan = [...$customPlan, newExercise];
   console.log("plan", $customPlan);
 };
-function savePlan() {
-  $userExercise.exercise= $customPlan;
+async function savePlan() {
+  $userExercise.exercise = $customPlan;
   $userExercise = {...$userExercise, user_id: $user.id}
-  handlePostExercise($userExercise, "POST", "/api/exercises");
+  console.log("userExercise", $userExercise);
+  try {
+    const response = await fetch("/api/exercises", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify($userExercise),
+    });
+    // console.log("plan response", response);
+    const { rows } = await response.json();
+    console.log("plans-response", rows );
+  } catch (error) {
+    console.error(error);
+  }
 };
 </script>
 
@@ -25,7 +38,7 @@ function savePlan() {
 
 {#each $customPlan as plan}
 <p>
-  This is your plan {plan};
+  This is your plan: {plan};
 </p>
 {/each}
 

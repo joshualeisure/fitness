@@ -42,7 +42,7 @@ const initDB = async () => {
         id SERIAL PRIMARY KEY,
         user_id INT references users(id),
         date DATE NOT NULL,
-        exercise VARCHAR(255) NOT NULL,
+        exercise TEXT Array NOT NULL,
         weights INT Array NOT NULL
       );
     `);

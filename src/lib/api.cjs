@@ -30,11 +30,12 @@ router.post("/login", async function(req, res) {
     client = await pool.connect(); 
     const { email, password } = req.body;
     console.log("login for user", req.body);
-    const get = await client.query("SELECT id, name, email, password FROM users WHERE email = $1 AND password = $2", [email, password]);
-    res.send({ rows: get.rows});
+    // const get = await client.query("SELECT id, name, email, password FROM users WHERE email = $1 AND password = $2", [email, password]);
+    const get = await client.query("SELECT u.*, e.exercise, e.date, e.weights FROM users as u LEFT JOIN exercises as e ON (e.user_id = u.id) WHERE u.email = $1 AND u.password = $2", [email, password]);
+    res.send({ rows: get.rows });
     console.log("get-line35", get)
   } catch (error) {
-    next(error)  
+    res.status(500).send({error, message: 'This is an error.'})
   }
 });
 
@@ -46,11 +47,10 @@ router.post("/register", async function (req, res, next) {
     client = await pool.connect();
     const { name, email, password } = req.body;
     const post = await client.query("INSERT INTO users(name, email, password) VALUES($1, $2, $3) RETURNING *", [name, email, password]);
-    console.log("post", post)
+    console.log("register", post)
     res.send({ rows: post.rows[0] });
   } catch (error) {
-    next(error) // Sends error to error handler on server.js
-  // res.status(500).send({error, message: 'This is an error.'})
+    res.status(500).send({error, message: 'This is an error.'})
   }
 });
 

@@ -1,5 +1,5 @@
 <script>
-  import {user} from '../Store/store'
+  import {customPlan, user, userExercise} from '../Store/store'
   async function register() {
     try {
       const response = await fetch("/api/register", {
@@ -12,6 +12,7 @@
     const { rows } = await response.json();
     console.log("register-response", rows);
     $user = {...$user, id: rows.id}
+    $customPlan = [];
     document.getElementById("welcome").innerText = "Thank you for joining, " + $user.name + "!";
   } catch (error) {
     console.error(error);
@@ -20,14 +21,28 @@
 
   async function login() {
     try {
-    await fetch("api/login", {
+    const response = await fetch("api/login", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify($user),
     });
-    document.getElementById("welcome").innerText = "Thank you for coming back, " + $user.name + "!";
+    const { rows } = await response.json();
+    // console.log("login row", rows)
+    // $user = {...$user, id: rows[0].id}
+    if (rows.length) {
+      $user = {...$user, id: rows[0].id}
+      if (rows[0].exercise) { 
+        $userExercise = { exercise: rows[0].exercise, date: rows[0].date, weights: rows[0].weights }
+        $customPlan = $userExercise.exercise;
+      } else {
+        $customPlan = [];
+      }
+      console.log("login-response", $user);
+      console.log("date", $userExercise.date);
+      document.getElementById("welcome").innerText = "Thank you for coming back, " + rows[0].name + "!";
+    }
   } catch (error) {
     console.error(error);
   }
