@@ -6,6 +6,7 @@ function addExercise() {
   $customPlan = [...$customPlan, newExercise];
   console.log("plan", $customPlan);
 };
+
 async function savePlan() {
   $userExercise.exercise = $customPlan;
   $userExercise = {...$userExercise, user_id: $user.id}

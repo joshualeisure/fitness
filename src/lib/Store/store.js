@@ -5,9 +5,32 @@ export const user = writable({});
 export const userExercise = writable({
   exercise: '',
   date: '',
-  weights: [0]
+  weights: [0],
+  sets: 1,
+  reps: [0]
 });
 
+// export const userPlans = writable([
+//   { date: 
+//     { exercises: 
+//       [ 
+//         {name: 'exise'} 
+//       ] 
+//     } 
+//   }
+// ]);
+
+
+// date = {
+//   exercises: [
+//     { name: 'exercise name', sets: 2, reps: 5, weight: 50 }
+//   ],
+// }
+
+
+export const userExerciseCalendar = writable([
+
+]);
 export const customPlan = writable([]);
 export const exercises = writable(
   [

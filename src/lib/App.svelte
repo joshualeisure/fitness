@@ -1,10 +1,12 @@
 <script>
 	import ExerciseName from './Components/ExerciseName.svelte';
 	import Weights from './Components/Weights.svelte';
-	import DateString from './Components/Date.svelte';
+	import DateField from './Components/DateField.svelte';
 	import UserInfo from './Components/UserInfo.svelte';
 	import UserLogin from './Components/UserLogin.svelte';
-	import { user } from './Store/store';
+	import Sets from './Components/Sets.svelte';
+	import Reps from './Components/Reps.svelte';
+	import { user, userExercise } from './Store/store';
 </script>
 
 <main>
@@ -13,11 +15,14 @@
 	<h3>Register/Login:</h3>
 	<UserLogin />
 	<div id="welcome">Register by creating an account or login above!</div>
-	<DateString />
-	<Weights />
+	<DateField />
 	<ExerciseName /><br><br>
+	<Sets />
+	<Reps componentName="Reps" exerciseProp={$userExercise.reps} />
+	<Reps componentName="Weights" exerciseProp={$userExercise.weights} />
 	<UserInfo />
 </main>
+
 
 <style>
 	main {

@@ -1,14 +1,5 @@
 <script>
-  import DateCard from "$lib/Components/DateCard.svelte";
-  let dates = [0, 1, 2, 3, 4, 5];
+  import Calendar from "../../lib/Calendar.svelte"
 </script>
-<div class="calendar">
-{#each dates as date }
-  <DateCard {date} />
 
-
-
-
-  
-{/each}
-</div>
+<Calendar />

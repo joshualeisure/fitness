@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
-    "serverstart": "nodemon src/lib/server.cjs", 
+    "serverstart": "nodemon src/lib/server.cjs",
     "preview": "svelte-kit preview",
     "dbinit": "nodemon src/lib/dbinit.cjs"
   },
@@ -14,10 +14,11 @@
   },
   "type": "module",
   "dependencies": {
-    "express": "^4.17.1",
-    "pg": "^8.7.1",
     "@fontsource/fira-mono": "^4.2.2",
     "@lukeed/uuid": "^2.0.0",
-    "cookie": "^0.4.1"
+    "bootstrap": "^5.1.1",
+    "cookie": "^0.4.1",
+    "express": "^4.17.1",
+    "pg": "^8.7.1"
   }
 }

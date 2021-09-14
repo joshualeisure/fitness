@@ -6,5 +6,9 @@ const app = new App({
 		name: 'world'
 	}
 });
+// const calendar = new App({
+// 	target: document.body
+// });
 
 export default app;
+// export default calendar;

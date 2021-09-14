@@ -3,8 +3,10 @@
 
 	let now = new Date();
 	
-	$: date = new Date(now.getTime() - (now.getTimezoneOffset() * 60000 )).toISOString().split("T")[0];
+	let date = now.toISOString().split("T")[0];
     $userExercise.date = date
+
+    // $userExercise.date = new Date(now.getTime() - (now.getTimezoneOffset() * 60000 )).toISOString().substring(0, 10);
 
 </script>
 

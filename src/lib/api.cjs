@@ -31,7 +31,7 @@ router.post("/login", async function(req, res) {
     const { email, password } = req.body;
     console.log("login for user", req.body);
     // const get = await client.query("SELECT id, name, email, password FROM users WHERE email = $1 AND password = $2", [email, password]);
-    const get = await client.query("SELECT u.*, e.exercise, e.date, e.weights FROM users as u LEFT JOIN exercises as e ON (e.user_id = u.id) WHERE u.email = $1 AND u.password = $2", [email, password]);
+    const get = await client.query("SELECT u.*, e.exercise, e.date, e.weights, e.sets, e.reps FROM users as u LEFT JOIN exercises as e ON (e.user_id = u.id) WHERE u.email = $1 AND u.password = $2", [email, password]);
     res.send({ rows: get.rows });
     console.log("get-line35", get)
   } catch (error) {
@@ -59,9 +59,9 @@ router.post("/exercises", async function (req, res) {
   let client;
   try {
     client = await pool.connect();
-    const { user_id, exercise, date, weights } = req.body;
+    const { user_id, exercise, date, weights, sets, reps } = req.body;
     console.log("router exercise body", req.body);
-    const post = await client.query("INSERT INTO exercises(user_id, exercise, date, weights) VALUES($1, $2, $3, $4) RETURNING*", [user_id, exercise, date, weights]);
+    const post = await client.query("INSERT INTO exercises(user_id, exercise, date, weights, sets, reps) VALUES($1, $2, $3, $4, $5, $6) RETURNING*", [user_id, exercise, date, weights, sets, reps]);
     console.log("exercise", post)
     res.send({ rows: post.rows });
   } catch (error) {

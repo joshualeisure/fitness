@@ -43,6 +43,8 @@ const initDB = async () => {
         user_id INT references users(id),
         date DATE NOT NULL,
         exercise TEXT Array NOT NULL,
+        sets INT NOT NULL,
+        reps INT Array NOT NULL,
         weights INT Array NOT NULL
       );
     `);
