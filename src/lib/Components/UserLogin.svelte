@@ -1,5 +1,5 @@
 <script>
-  import {customPlan, user, userExercise, userExerciseCalendar} from '../Store/store'
+  import { user, userExercise, userExerciseCalendar} from '../Store/store'
   async function register() {
     try {
       const response = await fetch("/api/register", {
@@ -12,7 +12,7 @@
     const { rows } = await response.json();
     console.log("register-response", rows);
     $user = {...$user, id: rows.id}
-    $customPlan = [];
+    $userExercise.exercise = [];
     document.getElementById("welcome").innerText = "Thank you for joining, " + $user.name + "!";
   } catch (error) {
     console.error(error);
@@ -35,9 +35,8 @@
         $userExercise = { exercise: rows[0].exercise, date: rows[0].date, weights: rows[0].weights, sets: rows[0].sets, reps: rows[0].reps }
         console.log("login rows", rows);
         $userExerciseCalendar = rows;
-        $customPlan = $userExercise.exercise;
       } else {
-        $customPlan = [];
+        $userExercise.exercise = [];
       }
       console.log("login-response", $user);
       console.log("date", $userExercise.date);
@@ -47,7 +46,11 @@
     console.error(error);
   }
   }
-  
+function logout() {
+  $user = {};
+  $userExercise = {exercise: '', date: '', weights: [0], sets: 1, reps: [0]};
+  // window.location.reload();
+};
 </script>
 
 <label for="name">Name:</label><br>
@@ -58,4 +61,5 @@
 <input type='text' bind:value={$user.password}><br><br>
 <button type="submit" on:click={register}>Register</button>
 <button type="submit" on:click={login}>Login</button><br><br>
+<button type="submit" on:click={logout}>Logout</button><br><br>
 <p>user: {$user.id}</p>

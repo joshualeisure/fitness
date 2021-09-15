@@ -1,7 +1,7 @@
 <script>
   import Weights from "./Weights.svelte";
   import ExerciseName from "./ExerciseName.svelte";
-  import {exercises, userExercise, customPlan} from '../Store/store';
+  import {exercises, userExercise} from '../Store/store';
   import { onMount } from 'svelte';
 import { each } from "svelte/internal";
   export let cardDate;

@@ -1,14 +1,13 @@
 <script>
-import {customPlan, exercises, user, userExercise} from '../Store/store'
+import {exercises, user, userExercise} from '../Store/store'
 
 let newExercise;
 function addExercise() {
-  $customPlan = [...$customPlan, newExercise];
-  console.log("plan", $customPlan);
+  $userExercise.exercise = [...$userExercise.exercise, newExercise];
+  console.log("plan",  $userExercise.exercise);
 };
 
 async function savePlan() {
-  $userExercise.exercise = $customPlan;
   $userExercise = {...$userExercise, user_id: $user.id}
   console.log("userExercise", $userExercise);
   try {
@@ -49,7 +48,7 @@ async function savePlan() {
   </div>
 </div>
 
-{#each $customPlan as plan}
+{#each $userExercise.exercise as plan}
 <p>
   This is your plan: {plan};
 </p>
