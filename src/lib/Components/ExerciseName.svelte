@@ -37,11 +37,20 @@ async function savePlan() {
 </datalist>
 </div><br>
 
+
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col">
+      <button on:click={addExercise}>Add</button>
+    </div>
+    <div class="col">
+      <button on:click={savePlan}>Save</button>
+    </div>
+  </div>
+</div>
+
 {#each $customPlan as plan}
 <p>
   This is your plan: {plan};
 </p>
 {/each}
-
-<button on:click={addExercise}>Add New Exercise</button>
-<button on:click={savePlan}>Save Your Plan</button>

@@ -13,8 +13,19 @@ import {userExercise} from '../Store/store';
   }
 </script>
 
- <div><h3>Sets</h3>
-  <h2>{$userExercise.sets}</h2>
-  <button on:click={addSets}>Add Set</button>
-  <button on:click={removeSets}>Remove Set</button>
+<div class="container">
+  <h3>Sets</h3>
+  <div class="row align-items-start">
+    <h2>{$userExercise.sets}</h2><br><br>
+    <div class="col">
+      <button on:click={addSets}>+ Set</button>
+    </div>
+    <div class="col">
+      <button on:click={removeSets}>- Set</button>
+    </div>
+  </div>
 </div>
+
+ 
+ 
+

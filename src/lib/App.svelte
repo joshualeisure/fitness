@@ -15,12 +15,24 @@
 	<h3>Register/Login:</h3>
 	<UserLogin />
 	<div id="welcome">Register by creating an account or login above!</div>
-	<DateField />
-	<ExerciseName /><br><br>
-	<Sets />
-	<Reps componentName="Reps" exerciseProp={$userExercise.reps} />
-	<Reps componentName="Weights" exerciseProp={$userExercise.weights} />
-	<UserInfo />
+	<DateField /><br><br>
+
+	<div class="container">
+		<div class="row align-items-start">
+			<div class="col">
+				<ExerciseName />
+			</div>
+			<div class="col">
+				<Sets />
+			</div>
+			<div class="col">
+				<Reps componentName="Reps" exerciseProp={$userExercise.reps} />
+			</div>
+			<div class="col">
+				<Reps componentName="Weights" exerciseProp={$userExercise.weights} />
+			</div>
+		</div>
+	<!-- <UserInfo /> -->
 </main>
 
 

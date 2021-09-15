@@ -17,6 +17,7 @@
 			<li class:active={$page.path === '/fitness'}><a sveltekit:prefetch href="/fitness">Exercise Tracker</a></li>
 			<li class:active={$page.path === '/logweight'}><a sveltekit:prefetch href="/logweight">Weight Tracker</a></li>
 			<li class:active={$page.path === '/calendar'}><a sveltekit:prefetch href="/calendar">Calendar</a></li>
+			<li class:active={$page.path === '/test'}><a sveltekit:prefetch href="/test">Test</a></li>
 
 
 		</ul>
