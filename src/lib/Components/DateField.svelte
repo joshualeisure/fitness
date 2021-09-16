@@ -43,11 +43,4 @@
 <input type=date bind:value={$userExercise.date}>
 </div> -->
 
-<!-- <label for="name">Name:</label><br>
-<input type='text' bind:value={$user.name}><br>
-<label for="email">Email:</label><br>
-<input type='text' bind:value={$user.email}><br>
-<label for="password">Password:</label><br>
-<input type='text' bind:value={$user.password}><br><br>
-<button type="submit" on:click={register}>Register</button>
-<button type="submit" on:click={login}>Login</button><br><br> -->
+

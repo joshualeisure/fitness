@@ -4,6 +4,7 @@ export const user = writable({});
 
 export const userExercise = writable({
   exercise: '',
+  plans: [],
   date: '',
   weights: [0],
   sets: 1,

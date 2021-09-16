@@ -53,11 +53,11 @@ function logout() {
 };
 </script>
 
-<label for="name">Name:</label><br>
+<label for="name"><h5>Name:</h5></label><br>
 <input type='text' bind:value={$user.name}><br>
-<label for="email">Email:</label><br>
+<label for="email"><h5>Email:</h5></label><br>
 <input type='text' bind:value={$user.email}><br>
-<label for="password">Password:</label><br>
+<label for="password"><h5>Password:</h5></label><br>
 <input type='text' bind:value={$user.password}><br><br>
 <button type="submit" on:click={register}>Register</button>
 <button type="submit" on:click={login}>Login</button><br><br>

@@ -24,34 +24,71 @@ pool.on('error', (err, client) => {
 const initDB = async () => {
   let client;
 
-  try {
-    client = await pool.connect();
-    await client.query(`
-      DROP TABLE IF EXISTS users CASCADE; 
-      DROP TABLE IF EXISTS exercises CASCADE;
-    `);
-    await client.query(`
-      CREATE TABLE users (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL
-      );
+//   try {
+//     client = await pool.connect();
+//     await client.query(`
+//       DROP TABLE IF EXISTS users CASCADE; 
+//       DROP TABLE IF EXISTS exercises CASCADE;
+//     `);
+//     await client.query(`
+//       CREATE TABLE users (
+//         id SERIAL PRIMARY KEY,
+//         name VARCHAR(255) NOT NULL,
+//         email VARCHAR(255) NOT NULL UNIQUE,
+//         password VARCHAR(255) NOT NULL
+//       );
       
-      CREATE TABLE exercises (
-        id SERIAL PRIMARY KEY,
-        user_id INT references users(id),
-        date DATE NOT NULL,
-        exercise TEXT Array NOT NULL,
-        sets INT NOT NULL,
-        reps INT Array NOT NULL,
-        weights INT Array NOT NULL
-      );
-    `);
-    console.log("hi")
-  } catch (error) {
-    console.error(error)
-  }
-};
+//       CREATE TABLE exercises (
+//         id SERIAL PRIMARY KEY,
+//         user_id INT references users(id),
+//         date DATE NOT NULL,
+//         exercise TEXT Array NOT NULL,
+//         sets INT NOT NULL,
+//         reps INT Array NOT NULL,
+//         weights INT Array NOT NULL
+//       );
+//     `);
+//     console.log("hi")
+//   } catch (error) {
+//     console.error(error)
+//   }
+// };
 
+try {
+  client = await pool.connect();
+  await client.query(`
+    DROP TABLE IF EXISTS users CASCADE; 
+    DROP TABLE IF EXISTS exercises CASCADE;
+    DROP TABLE IF EXISTS plans CASCADE;
+
+  `);
+  await client.query(`
+    CREATE TABLE users (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL UNIQUE,
+      password VARCHAR(255) NOT NULL
+    );
+
+    CREATE TABLE plans (
+      id_plan SERIAL,
+      user_id INT references users(id),
+      exercise_ids INT PRIMARY KEY
+    );
+    
+    CREATE TABLE exercises (
+      id_exercise SERIAL references plans(exercise_ids),
+      user_id INT references users(id),
+      date DATE NOT NULL,
+      exercise TEXT Array NOT NULL,
+      sets INT NOT NULL,
+      reps INT Array NOT NULL,
+      weights INT Array NOT NULL
+    );
+  `);
+  console.log("hi")
+} catch (error) {
+  console.error(error)
+}
+};
 initDB();

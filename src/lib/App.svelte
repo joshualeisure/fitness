@@ -7,6 +7,7 @@
 	import Sets from './Components/Sets.svelte';
 	import Reps from './Components/Reps.svelte';
 	import { user, userExercise } from './Store/store';
+	import Plan from './Components/Plan.svelte';
 </script>
 
 <main>
@@ -16,7 +17,7 @@
 	<UserLogin />
 	<div id="welcome">Register by creating an account or login above!</div>
 	<DateField /><br><br>
-
+	<Plan />
 	<div class="container">
 		<div class="row align-items-start">
 			<div class="col">
